@@ -17,18 +17,14 @@ import os
 # Get all the config envs.
 USE_DOCKER_ENV = config('USE_DOCKER_ENV', default=False, cast=bool)
 USE_DOCKER_DB = config('USE_DOCKER_DB', default=False, cast=bool)
+REDIS_HOST = config('REDIS_HOST', default='redis')
+REDIS_PORT = config('REDIS_PORT', default='6379')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 # host setup
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
-
-print(ALLOWED_HOSTS)
-print(ALLOWED_HOSTS)
-print(ALLOWED_HOSTS)
-print(ALLOWED_HOSTS)
-print(ALLOWED_HOSTS)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='0.0.0.0').split(',')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'inventory_management_system'
 ]
 
 MIDDLEWARE = [
@@ -90,6 +87,17 @@ DATABASES = {
         'PASSWORD': config('DATABASE_PASSWORD'),
         'HOST': 'db' if USE_DOCKER_DB else 'localhost',  # Use 'db' as the hostname when using Docker Compose
         'PORT': '5432' if USE_DOCKER_DB else '5444',  # Use '5432' for Docker Compose, ç'5444' for local dev
+    }
+}
+
+# Redis cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': f"redis://{config('REDIS_HOST')}:{config('REDIS_PORT')}/1",
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
     }
 }
 
