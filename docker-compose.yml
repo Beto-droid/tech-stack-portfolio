@@ -14,13 +14,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    env_file:
-      - .env.docker
-    environment:
-      - POSTGRES_HOST=db
-      - USE_DOCKER_DB=True
-      - ALLOWED_HOSTS=0.0.0.0,localhost
-
+      - redis
   db:
     image: postgres:17.0
     container_name: tech_stack_portfolio_db
@@ -32,6 +26,12 @@ services:
       - "5444:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+
+  redis:
+    image: redis:7.4.1
+    container_name: tech_stack_portfolio_redis
+    ports:
+      - "6390:6379"
 
 volumes:
   postgres_data:
