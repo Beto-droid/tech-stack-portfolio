@@ -31,12 +31,16 @@ services:
       - "5444:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    profiles:
+      - local
 
   redis:
     image: redis:7.4.1
     container_name: tech_stack_portfolio_redis
     ports:
       - "6390:6379"
+    profiles:
+      - local
 
   prometheus:
     image: prom/prometheus
@@ -46,6 +50,12 @@ services:
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
 
 volumes:
   postgres_data:

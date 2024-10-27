@@ -21,5 +21,6 @@ import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('', include('django_prometheus.urls')),
     path('inventory_management_system/', include('inventory_management_system.urls')),
 ]
