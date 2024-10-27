@@ -15,16 +15,22 @@ from decouple import config
 import os
 
 # Get all the config envs.
-USE_DOCKER_ENV = config('USE_DOCKER_ENV', default=False, cast=bool)
-USE_DOCKER_DB = config('USE_DOCKER_DB', default=False, cast=bool)
-REDIS_HOST = config('REDIS_HOST', default='redis')
-REDIS_PORT = config('REDIS_PORT', default='6379')
+# Postgres
+DATABASE_NAME = config('DATABASE_NAME')
+DATABASE_USER = config('DATABASE_USER')
+DATABASE_PASSWORD = config('DATABASE_PASSWORD')
+DATABASE_HOST = config('DATABASE_HOST')
+DATABASE_PORT = config('DATABASE_PORT')
+# Redis
+REDIS_HOST = config('REDIS_HOST')
+REDIS_PORT = config('REDIS_PORT')
+# Django
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 # host setup
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='0.0.0.0').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,11 +88,11 @@ WSGI_APPLICATION = 'TechStackPortfolio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-        'HOST': 'db' if USE_DOCKER_DB else 'localhost',  # Use 'db' as the hostname when using Docker Compose
-        'PORT': '5432' if USE_DOCKER_DB else '5444',  # Use '5432' for Docker Compose, ç'5444' for local dev
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+        'HOST': DATABASE_HOST,
+        'PORT': DATABASE_PORT,
     }
 }
 
@@ -94,7 +100,7 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': f"redis://{config('REDIS_HOST')}:{config('REDIS_PORT')}/1",
+        'LOCATION': f"redis://{REDIS_HOST}:{REDIS_PORT}/1",
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         },
