@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+        <h1>hi from invetory home</h1>
+        {% if my_list %}
+            <ul>
+            {% for item in my_list %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <h1>goodby home</h1>
+</body>
+{% endblock content %}
+

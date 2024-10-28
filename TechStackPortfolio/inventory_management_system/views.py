@@ -1,17 +1,11 @@
 import random
-
-from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
-
-HTML_STR = """
-<h1>Hi from inventory management system</h1>"""
-
 def inventory_management_system_home(request):
-    number = random.randint(1, 100)
 
-    hrml_sting_to_parse = "HI!"
-    asdasd = f"<h1>Hi from inventory management user {number}</h1>"
-    response = HttpResponse(asdasd, content_type="text/html")
-    return response
+    my_list =  [random.randint(1, 100) for _ in range(20)]
+    # list_of_strings = [f"my number is {x}" for x in [102, 100, 13, 234, 1334, 2313]]
+    # list_of_strings = [f"<li>my number is {x}</li>" for x in [random.randint(1, 100) for _ in range(20)]]
+
+    context = {'my_list': my_list}
+    return render(request, 'inventory_management_system/inventory_management_system_home.html', context)

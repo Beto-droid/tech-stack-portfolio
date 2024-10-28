@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>My CV</h1>
+    <ul>
+        {% for entry in entries %}
+            <li><strong>{{ entry.job_title }}</strong> at {{ entry.company }} - {{ entry.description }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'cv_add' %}">Add a new entry</a>
+{% endblock %}

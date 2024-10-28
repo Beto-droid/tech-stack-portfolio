@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
     path('', include('django_prometheus.urls')),
     path('inventory_management_system/', include('inventory_management_system.urls')),
-]
+    path('', include('main_portfolio_presentation_cv.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -69,12 +69,17 @@ To generate a `requirements.txt` file for your environment:
    pip freeze > requirements.txt
    ```
 
-## Did you changed something in my code?
+## Did you change something in my code?
 Well, you need to remake the docker image from django.
    ```bash
    docker build -t my_django_portfolio_web .
    ```
 
+## Docker failed?
+See their logs
+   ```bash
+   docker logs
+   ```
 
 
 
