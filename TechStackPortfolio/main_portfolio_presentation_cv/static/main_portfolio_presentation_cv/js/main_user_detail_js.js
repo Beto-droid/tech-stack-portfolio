@@ -14,4 +14,6 @@ function toggleOverlay(button) {
     if (titleOverlay) {
         titleOverlay.style.display = titleOverlay.style.display === 'none' ? 'block' : 'none';
     }
+    const go_to_app_button = card.querySelector('.go-to-app-button');
+    go_to_app_button.classList.toggle('disabled');
 }

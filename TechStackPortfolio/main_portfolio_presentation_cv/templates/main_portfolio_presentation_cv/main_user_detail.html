@@ -17,42 +17,31 @@
     <!-- Content  -->
     <div id="Content" class="container my-5">
         <!-- Bio  -->
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left Column: Picture -->
-                <div class="col-md-4 text-center">
-                    <img src="{{ main_user.bio_picture.url }}" alt="Bio Picture" class="img-fluid">
-                </div>
-                <!-- Right Column: Bio Text -->
-                <div class="col-md-8">
-                    <h2>About Me</h2>
-                    <p>{{ main_user.about_me }}</p>
+        <section class="bio-section py-5">
+            <div class="container">
+                <div class="row align-items/">
+                    <!-- left Picture -->
+                    <div class="col-md-4 text-center">
+                        <img src="{{ main_user.bio_picture.url }}" alt="Bio Picture" class="img-fluid bio-row-picture">
+                    </div>
+                    <!-- rigt Bio Text -->
+                    <div class="col-md-8">
+                        <h2>About Me</h2>
+                        <p>{{ main_user.about_me }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Technologies  -->
         <section class="technologies-section py-5">
             <div class="container">
                 <h2>Technologies</h2>
-{#                <div class="row">#}
-{#                    {% for technology in main_user.technologies.all %}#}
-{#                        <div class="col-md-2 text-center mb-4">#}
-{#                            <div class="circle-progress" style="background: conic-gradient(#007bff {{ technology.years_of_experience|add:"30" }}%, #f8f9fa 0);">#}
-{#                                <div class="circle-content">#}
-{#                                    <span class="tech-name">{{ technology.name }}</span>#}
-{#                                    <span class="tech-experience">{{ technology.years_of_experience }} yrs</span>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-{#                </div>#}
                 <div class="row">
                     {% for technology in main_user.technologies.all %}
                         <div class="col-md-4 mb-4">
                             <h5>{{ technology.name }}</h5>
                             <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{ technology.years_of_experience }}" aria-valuemin="0" aria-valuemax="7">
-                                <!-- Adjust width using widthratio with 7 as the max -->
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {% widthratio technology.years_of_experience 7 100 %}%;">
                                     {{ technology.years_of_experience }} years
                                 </div>
@@ -65,27 +54,29 @@
 
         <!-- Work Experience -->
         <section class="work-experience-section py-5">
-            <h2 class="text-center">Work Experience</h2>
-            <div class="timeline-container">
-                {% for experience in main_user.work_experience.all %}
-                    <div class="timeline-entry">
-                        <div class="timeline-icon">
-                            {% if experience.company_logo %}
-                                <img src="{{ experience.company_logo.url }}" alt="{{ experience.company_name }}" class="img-fluid rounded-circle" width="50">
-                            {% else %}
-                                <img src="{% static 'admin/img/search.svg' %}" alt="Default Work Icon" width="40">
-                            {% endif %}
-                        </div>
-                        <div class="timeline-content">
-                            <div class="experience-pill p-2 shadow-sm rounded">
-                                <h5>{{ experience.company_name }}</h5>
-                                <small class="text-muted">{{ experience.years_in_company }} years</small>
-                                <p class="position mb-1">{{ experience.position }}</p>
-                                <small>{{ experience.start_date }} - {{ experience.end_date|default:"Present" }}</small>
+            <div class="container">
+                <h2 class="text-center">Work Experience</h2>
+                <div class="timeline-container">
+                    {% for experience in main_user.work_experience.all %}
+                        <div class="timeline-entry">
+                            <div class="timeline-icon">
+                                {% if experience.company_logo %}
+                                    <img src="{{ experience.company_logo.url }}" alt="{{ experience.company_name }}" class="img-fluid rounded-circle" width="50">
+                                {% else %}
+                                    <img src="{% static 'admin/img/search.svg' %}" alt="Default Work Icon" width="40">
+                                {% endif %}
+                            </div>
+                            <div class="timeline-content">
+                                <div class="experience-pill p-2 shadow-sm rounded">
+                                    <h5>{{ experience.company_name }}</h5>
+                                    <small class="text-muted">{{ experience.years_in_company }} years</small>
+                                    <p class="position mb-1">{{ experience.position }}</p>
+                                    <small>{{ experience.start_date }} - {{ experience.end_date|default:"Present" }}</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </section>
 
@@ -100,7 +91,7 @@
                                 <img src="{{ project.project_picture.url }}" alt="{{ project.title }}" class="card-img">
                                 <!-- Overlay with description and go to app button -->
                                 <div class="card-img-overlay">
-                                    <h5 class="card-title project-card-title">{{ project.title }}</h5>
+                                    <h5 class="card-title project-card-title text-center">{{ project.title }}</h5>
                                 </div>
                                 <div class="card-overlay text-center d-flex flex-column justify-content-center align-items-center" onclick="toggleOverlay(this)">
                                     <p class="card-text">{{ project.description }}</p>
@@ -111,7 +102,7 @@
                                             {% endfor %}
                                         </small>
                                     </p>
-                                    <a href = '{{ project.url_name_to_app }}' class="btn btn-primary mt-2 ">Go to App</a>
+                                    <a href = '{{ project.url_name_to_app }}' class="go-to-app-button btn btn-outline-light disabled">Go to App</a>
                                 </div>
                             </div>
                         </div>
