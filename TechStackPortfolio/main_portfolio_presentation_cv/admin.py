@@ -1,6 +1,6 @@
 from django.contrib import admin
 from main_portfolio_presentation_cv.models import MainUser, JobTitle, Technologies, WorkExperience, \
-    SocialLinkConnect
+    SocialLinkConnect, Projects
 
 @admin.register(MainUser)
 class MainUserAdmin(admin.ModelAdmin):
@@ -23,6 +23,10 @@ class WorkExperienceAdmin(admin.ModelAdmin):
 
 @admin.register(SocialLinkConnect)
 class SocialLinkConnectAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Projects)
+class ProjectsAdmin(admin.ModelAdmin):
     pass
 
 # Register MainUser with custom admin class

@@ -42,6 +42,17 @@ class SocialLinkConnect(models.Model):
     def __str__(self):
         return f"{self.social_name} - URL: {self.url or 'None'} - Email: {self.mail or 'None'}"
 
+class Projects(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    url_name_to_app = models.CharField(max_length=100)
+    technologies = models.ManyToManyField(Technologies)
+    project_picture = models.ImageField(upload_to='project_pictures/', null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.description} - {self.technologies}"
+
+
 class MainUser(models.Model):
     first_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100, blank=True, null=True)
@@ -52,6 +63,7 @@ class MainUser(models.Model):
     work_experience = ManyToManyField(WorkExperience, blank=True)
     technologies = ManyToManyField(Technologies, blank=True)
     social_link_connect = ManyToManyField(SocialLinkConnect, blank=True)
+    projects = ManyToManyField(Projects, blank=True)
     about_me = models.TextField(max_length=1000, default='Missing About Me')
     bio_picture = models.ImageField(upload_to='bio_images/', null=True, blank=True)
     hero_image = models.ImageField(upload_to='hero_images/', null=True, blank=True)
@@ -69,3 +81,5 @@ class MainUser(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+

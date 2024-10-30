@@ -89,6 +89,37 @@
             </div>
         </section>
 
+        <!-- Projects section -->
+        <section class="projects-cards-section py-5">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for project in main_user.projects.all %}
+                        <div class="col">
+                            <div class="card text-bg-dark position-relative">
+                                <img src="{{ project.project_picture.url }}" alt="{{ project.title }}" class="card-img">
+                                <!-- Overlay with description and go to app button -->
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title project-card-title">{{ project.title }}</h5>
+                                </div>
+                                <div class="card-overlay text-center d-flex flex-column justify-content-center align-items-center" onclick="toggleOverlay(this)">
+                                    <p class="card-text">{{ project.description }}</p>
+                                    <p class="card-text">
+                                        <small>
+                                            {% for tech in project.technologies.all %}
+                                                {{ tech.name }}{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </small>
+                                    </p>
+                                    <a href = '{{ project.url_name_to_app }}' class="btn btn-primary mt-2 ">Go to App</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
         <!-- Social Links -->
         <section class="social-links-section py-5">
             <h2>Social Links</h2>
@@ -101,6 +132,7 @@
             </ul>
         </section>
     </div>
+    <script src="{% static 'main_portfolio_presentation_cv/js/main_user_detail_js.js' %}"></script>
 
 {% endblock %}
 
