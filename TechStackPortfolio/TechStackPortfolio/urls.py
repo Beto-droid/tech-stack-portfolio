@@ -20,9 +20,10 @@ import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
+urlpatterns = ([
     path('admin/', admin.site.urls),
     path('', include('django_prometheus.urls')),
     path('inventory_management_system/', include('inventory_management_system.urls')),
     path('', include('main_portfolio_presentation_cv.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
+               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

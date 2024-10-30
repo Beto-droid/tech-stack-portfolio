@@ -81,6 +81,13 @@ See their logs
    docker logs
    ```
 
+## Any Problems django migrations ?
+Try
+   ```bash
+   python manage.py migrate --fake <migration> zero
+
+   ```
+
 
 
 

@@ -1,17 +1,6 @@
-from django.shortcuts import render, redirect
-from .models import CVEntry
-from .forms import CVEntryForm
+from django.shortcuts import render, get_object_or_404
+from .models import MainUser
 
-def cv_list(request):
-    entries = CVEntry.objects.all()
-    return render(request, 'main_portfolio_presentation_cv/cv_list.html', {'entries': entries})
-
-def cv_add(request):
-    if request.method == 'POST':
-        form = CVEntryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('cv_list')
-    else:
-        form = CVEntryForm()
-    return render(request, 'main_portfolio_presentation_cv/cv_add.html', {'form': form})
+def main_user_view(request):
+    main_user = get_object_or_404(MainUser, id=1)
+    return render(request, 'main_portfolio_presentation_cv/main_user_detail.html', {'main_user': main_user})

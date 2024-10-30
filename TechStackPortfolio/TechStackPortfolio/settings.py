@@ -153,9 +153,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "/staticfiles/"
-STATICFILES_DIRS = [BASE_DIR / "TechStackPortfolio" / "staticfiles"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"  # This one generates a magic url that then you need to use in the form, {% load static %}
+STATICFILES_DIRS = [BASE_DIR / "TechStackPortfolio" / "staticfiles"]  # additional directories where Django will look for static files
+STATIC_ROOT = BASE_DIR / "staticfiles"  # This is the target directory where collectstatic gathers all files for production.
+
+# For hero and profile and bio images.
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

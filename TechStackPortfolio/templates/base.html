@@ -1,13 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bootstrap Test</title>
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-</head>
-<body>
-<h1>Hello, Bootstrap!</h1>
-<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Main base Title{% endblock %}</title>
+        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/base_css.css' %}" rel="stylesheet">
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-dark bg-transparent sticky-lg-top">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="{% static 'images/LOGO.png' %}" alt="Logo" width="40" height="40" class="rounded-circle">
+            </a>
+            <button class="navbar-toggler bg-light bg-dark-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Toast Message for menu-->
+            <div id="liveToast" class="toast custom-color-alert-menu-bar align-items-center text-bg-primary border-0 bg-dark-subtle bg-light" role="note" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 10px; right: 80px; z-index: 11;">
+                <div class="d-flex align-items-end">
+                    <div class="toast-body text-end" style="font-family: 'Arial', sans-serif; font-weight: bold; font-size: 1rem;">
+                        Menu Bar Toggle
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url "main_portfolio_presentation_cv_home" %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Apps
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{% url "inventory_management_system_home" %}">Inventory Management</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+{#                    <form class="d-flex mt-3" role="search">#}
+{#                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
+{#                        <button class="btn btn-success" type="submit">Search</button>#}
+{#                    </form>#}
+                </div>
+            </div>
+        </div>
+    </nav>
+        {% block content %}
+        {% endblock content %}
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/base_js.js' %}"></script>
+    </body>
 </html>

@@ -1,0 +1,19 @@
+/*@media (min-width: 992px) {*/
+/*    .navbar-expand-lg .navbar-toggler {*/
+/*        display: block !important;*/
+/*    }*/
+/*}*/
+
+/* Styling the toast with arrow */
+/*.custom-color-alert-menu-bar {*/
+/*    color: #fff;*/
+/*    padding: 8px 12px;*/
+/*    border-radius: 4px;*/
+/*    position: relative;*/
+/*}*/
+.custom-color-alert-menu-bar {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1rem; /* Adjust font size */
+    color: #ffffff; /* Text color */
+    background-color: #333333; /* Background color */
+}
