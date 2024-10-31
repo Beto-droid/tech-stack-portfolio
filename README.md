@@ -89,7 +89,61 @@ Try
    ```
 
 
+# PostgreSQL Dump and restore
 
+## Backup
+
+  # Run script
+  ### In scripts folder there is a bash to backup an already running db. Add -x
+
+  ```
+  chmod +x backup.sh
+  ```
+
+  ### Then run 
+  ```
+  ./backup.sh 
+  ```
+   ### Having the service of db running, run 
+
+   ```
+   bash pg_dump -h localhost -p 5444 -U your_username -d your_database_name > backup.sql
+   bash pg_dump -h localhost -p 5444 -U techstackuser -d techstackdb > backup.sql
+   ```
+
+   ### Inside the container
+
+   ```
+   docker exec -it your_postgres_container_name bash
+   pg_dump -U your_username your_database_name > /path/to/backup.sql
+   docker cp your_postgres_container_name:/path/to/backup.sql ./backup.sql
+   ```
+   
+   ### example:
+
+   ```
+   docker exec -it tech_stack_portfolio_db bash
+   pg_dump -U techstackuser techstackdb > /path/to/backup.sql
+   docker cp tech_stack_portfolio_db:/path/to/backup.sql ./backup.sql   
+   ```
+
+## Restore
+   ### Make sure the db its running
+   ```
+   docker-compose up -d
+   ```
+   ### Check if DB its created, if not create it.
+   ```
+   docker exec -it your_postgres_container_name psql -U your_username -c "CREATE DATABASE your_database_name;"
+   ```
+   ### Copy backup to container
+   ```
+   docker cp /path/to/backup.sql your_postgres_container_name:/backup.sql
+   ```
+   ### Run the backup.
+   ```
+   docker exec -it your_postgres_container_name psql -U your_username -d your_database_name -f /backup.sql
+   ```
 
 
 
