@@ -48,7 +48,8 @@ restore_database() {
 echo "Select an option:"
 echo "1) Backup"
 echo "2) Restore"
-read -r -p "Enter choice [1 or 2]: " choice
+echo "3) Exit"
+read -r -p "Enter choice [1 or 2]. To exit: choice [3]: " choice
 
 case $choice in
     1)
@@ -56,6 +57,10 @@ case $choice in
         ;;
     2)
         restore_database
+        ;;
+    3)
+        echo "Exit.."
+        exit 0
         ;;
     *)
         echo "Invalid choice. Exiting."
