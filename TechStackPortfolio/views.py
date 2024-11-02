@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-
+from django.views.decorators.cache import cache_page
 from TechStackPortfolio.form import LoginForm
 
 # def register(request):
@@ -18,7 +18,7 @@ from TechStackPortfolio.form import LoginForm
 #     else:
 #         form = UserCreationForm()
 #     return render(request, 'registration/register.html', {'form': form})
-
+@cache_page(60 * 15)
 def crispy_login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
