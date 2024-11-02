@@ -1,11 +1,11 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Row, Div, Submit
-from .models import MainUser
+from .models import UserData
 from django import forms
 
-class MainUserForm(forms.ModelForm):
+class UserDataForm(forms.ModelForm):
     class Meta:
-        model = MainUser
+        model = UserData
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

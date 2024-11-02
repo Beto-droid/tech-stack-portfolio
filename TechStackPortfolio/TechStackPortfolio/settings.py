@@ -55,6 +55,14 @@ INSTALLED_APPS = [
     'main_portfolio_presentation_cv',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Redirects for login/logout
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 # Bootstrap config
 # See https://pypi.org/project/crispy-bootstrap5/
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -85,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'TechStackPortfolio.context_processors.login_form'
             ],
         },
     },

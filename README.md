@@ -93,17 +93,18 @@ Try
 
 ## Backup
 
-  # Run script
+  # [AUTO]
   ### In scripts folder there is a bash to backup an already running db. Add -x
 
   ```
-  chmod +x backup.sh
+  chmod +x backup_restore_db.sh
   ```
 
   ### Then run 
   ```
-  ./backup.sh 
+  ./backup_restore_db.sh 
   ```
+   # [MANUAL]
    ### Having the service of db running, run 
 
    ```

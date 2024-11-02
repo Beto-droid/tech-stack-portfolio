@@ -1,3 +1,4 @@
+{% load crispy_forms_filters %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -52,18 +53,48 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
+                        {% if user.is_authenticated %}
+                            <p class="my-md-2">Welcome, {{ user.username }}</p>
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <li class="nav-item">
+                                    <button type="submit" class="nav-link btn btn-secondary">Logout</button>
+                                </li>
+                            </form>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link active btn btn-primary my-sm-3" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active btn btn-secondary" href="{% url 'register' %}">Register</a>
+                            </li>
+                        {% endif %}
                     </ul>
-{#                    <form class="d-flex mt-3" role="search">#}
-{#                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
-{#                        <button class="btn btn-success" type="submit">Search</button>#}
-{#                    </form>#}
                 </div>
             </div>
         </div>
     </nav>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form hx-post="{% url 'login' %}" hx-target="#loginModal .modal-body" hx-swap="innerHTML">
+                        {% csrf_token %}
+                        {{ login_form|crispy }}
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
         {% block content %}
         {% endblock content %}
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/base_js.js' %}"></script>
+    <script src="{% static 'htmx/htmx.min.js' %}"></script>
     </body>
 </html>

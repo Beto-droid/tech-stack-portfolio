@@ -17,8 +17,3 @@
     color: #ffffff; /* Text color */
     background-color: #333333; /* Background color */
 }
-
-/*Modal css*/
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.5); /* Adjusts the background overlay opacity */
-}

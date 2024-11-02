@@ -19,11 +19,16 @@ from django.urls import path, include
 import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = ([
     path('admin/', admin.site.urls),
     path('', include('django_prometheus.urls')),
     path('inventory_management_system/', include('inventory_management_system.urls')),
     path('', include('main_portfolio_presentation_cv.urls')),
+   # path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('login/', views.crispy_login_view, name='login'),
+   path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+   path('register/', views.crispy_register_view, name='register'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
                static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
