@@ -18,7 +18,7 @@ from TechStackPortfolio.form import LoginForm
 #     else:
 #         form = UserCreationForm()
 #     return render(request, 'registration/register.html', {'form': form})
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
 def crispy_login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)

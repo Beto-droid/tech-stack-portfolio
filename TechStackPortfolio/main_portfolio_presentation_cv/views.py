@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import cache_page
 from .models import Portfolio, UserData
 
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
 def main_user_view(request):
     if request.user.is_authenticated:
         portfolio = get_object_or_404(Portfolio, user=request.user)

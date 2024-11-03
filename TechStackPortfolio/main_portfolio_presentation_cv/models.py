@@ -3,7 +3,8 @@ from django.db import models
 from django.db.models import ForeignKey, ManyToManyField
 from django.core.exceptions import ValidationError
 from django.conf import settings
-from main_portfolio_presentation_cv.utils import create_low_res_image
+from main_portfolio_presentation_cv.utils import optimize_and_create_low_res
+
 
 class JobTitle(models.Model):
     title = models.CharField(max_length=100)
@@ -54,11 +55,9 @@ class Projects(models.Model):
     def __str__(self):
         return f"{self.title} - {self.description} - {self.technologies}"
 
+    @optimize_and_create_low_res('project_picture')
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-
-        if self.project_picture:
-            create_low_res_image(self.project_picture.path)
 
 class UserData(models.Model):
     first_name = models.CharField(max_length=100)
@@ -77,19 +76,9 @@ class UserData(models.Model):
     profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     logo_picture = models.ImageField(upload_to='logo_images/', null=True, blank=True)
 
+    @optimize_and_create_low_res('bio_picture', 'hero_image', 'profile_picture')
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-
-        if self.bio_picture:
-            create_low_res_image(self.bio_picture.path)
-        if self.hero_image:
-            img = Image.open(self.hero_image.path)
-            if img.height > 1080 or img.width > 1920:
-                img = img.resize((1920, 1080), Image.Resampling.LANCZOS)
-                img.save(self.hero_image.path)
-            create_low_res_image(self.hero_image.path)
-        if self.profile_picture:
-            create_low_res_image(self.profile_picture.path)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
