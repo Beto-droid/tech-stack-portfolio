@@ -1,22 +1,5 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Get all the scroll-hiddens.
-//     const elements = document.querySelectorAll('.scroll-hidden');
-//
-//
-//     const observer = new IntersectionObserver((entries) => {
-//         entries.forEach(entry => {
-//             if (entry.isIntersecting) {
-//                 entry.target.classList.add('scroll-visible');
-//             } else {
-//                 // rehid them
-//                 entry.target.classList.remove('scroll-visible')
-//             }
-//         });
-//     });
-//
-//     elements.forEach(el => observer.observe(el));
-// });
-
+// This was used for autogenerate a filling bar.. but i saw that the issue
+// was that if the user scrolled up and down too fast was an ugly experience.
 // document.addEventListener("DOMContentLoaded", function () {
 //     const progressBars = document.querySelectorAll('.progress-bar');
 //
@@ -45,24 +28,6 @@
 //     });
 // });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Get all the scroll-hiddens.
-//     const elements = document.querySelectorAll('.card-hidden');
-//
-//     const observer = new IntersectionObserver((cards) => {
-//         cards.forEach(card => {
-//             if (card.isIntersecting) {
-//                 card.target.classList.add('card-visible');
-//             } else {
-//                 // rehid them
-//                 card.target.classList.remove('card-visible')
-//             }
-//         });
-//     });
-//
-//     elements.forEach(el => observer.observe(el));
-// });
-
 function animateElementsOnScroll(elementSelector, activeClass) {
     const elements = document.querySelectorAll(elementSelector);
 
@@ -71,6 +36,7 @@ function animateElementsOnScroll(elementSelector, activeClass) {
             if (entri.isIntersecting) {
                 entri.target.classList.add(activeClass);
             } else {
+                // Ehh i did not like it how it worked.
                 // rehid them
                 // entri.target.classList.remove(activeClass)
             }
@@ -82,25 +48,6 @@ function animateElementsOnScroll(elementSelector, activeClass) {
 animateElementsOnScroll('.scroll-hidden', 'scroll-visible')
 animateElementsOnScroll('.card-hidden', 'card-visible')
 animateElementsOnScroll('.timeline-hidden', 'timeline-visible')
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Get all the scroll-hiddens.
-//     const elements = document.querySelectorAll('.card-hidden');
-//
-//     const observer = new IntersectionObserver((cards) => {
-//         cards.forEach(card => {
-//             if (card.isIntersecting) {
-//                 card.target.classList.add('card-visible');
-//             } else {
-//                 // rehid them
-//                 card.target.classList.remove('card-visible')
-//             }
-//         });
-//     });
-//
-//     elements.forEach(el => observer.observe(el));
-// });
 
 document.addEventListener("DOMContentLoaded", function () {
     const progressBars = document.querySelectorAll('.progress-bar');

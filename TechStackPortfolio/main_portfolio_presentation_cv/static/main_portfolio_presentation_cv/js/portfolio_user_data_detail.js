@@ -3,8 +3,9 @@ function toggleDescription(slideIndex) {
     carousel.to(slideIndex);
 }
 
-// For card
-
+// For card, overlay toggle.
+// click, show overlay go to app.
+// Also hide before that the go to app.
 function toggleOverlay(button) {
     const card = button.closest('.card');
     const overlay = card.querySelector('.card-overlay');
