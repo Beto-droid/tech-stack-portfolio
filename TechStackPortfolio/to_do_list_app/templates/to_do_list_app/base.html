@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Todo List App{% endblock %}</title>
+    <!-- Load DaisyUI or any other specific CSS needed for this app -->
+    <link href="{% static 'to_do_list_app/css/tailwind_daisyui_output.css' %}" rel="stylesheet">
+</head>
+<body>
+<!-- Add a button to go back to the main project -->
+<div class="daisyui-container daisyui-mt-4 btn">
+    <a href="{% url 'main_portfolio_presentation_cv_home' %}" class="daisy-btn daisy-btn-primary">
+        Back to Main Portfolio
+    </a>
+</div>
+
+<!-- Main content block for the to-do list app -->
+<div class="daisyui-container mt-4">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- Add any scripts specific to the todo list app here -->
+</body>
+</html>

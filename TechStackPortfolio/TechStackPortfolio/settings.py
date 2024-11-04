@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'inventory_management_system',
     'main_portfolio_presentation_cv',
+    'to_do_list_app',
 ]
 
 AUTHENTICATION_BACKENDS = [

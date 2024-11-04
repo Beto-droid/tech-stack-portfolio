@@ -1,4 +1,3 @@
-from PIL import Image
 from django.db import models
 from django.db.models import ForeignKey, ManyToManyField
 from django.core.exceptions import ValidationError
@@ -85,8 +84,8 @@ class UserData(models.Model):
 
 
 class Portfolio(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user_data = models.ForeignKey(UserData, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user_data = models.OneToOneField(UserData, on_delete=models.CASCADE)
 
 
 

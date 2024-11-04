@@ -146,5 +146,9 @@ Try
    docker exec -it your_postgres_container_name psql -U your_username -d your_database_name -f /backup.sql
    ```
 
+# NPM
+
+## The readme its located in the to_do_app
+
 
 
