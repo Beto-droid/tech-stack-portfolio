@@ -110,8 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             bar.style.width = finalWidth;
-        }, index * 250); // change the timeout
+        }, index * 250); // Timeout variable.
     });
 });
-
-document.addEventListener("DOM")
