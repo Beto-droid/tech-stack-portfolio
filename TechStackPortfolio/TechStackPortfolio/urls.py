@@ -26,7 +26,7 @@ urlpatterns = ([
     path('', include('django_prometheus.urls')),
     path('', include('main_portfolio_presentation_cv.urls')),
     path('inventory_management_system/', include('inventory_management_system.urls')),
-    path('to_do_list_app', include('to_do_list_app.urls')),
+    path('to_do_list_app/', include('to_do_list_app.urls')),
     path('login/', views.crispy_login_view, name='login'),
    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
    path('register/', views.crispy_register_view, name='register'),

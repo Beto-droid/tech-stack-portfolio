@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django_prometheus',
     'crispy_forms',
     'crispy_bootstrap5',
+    'widget_tweaks',
+    'template_partials',
     'inventory_management_system',
     'main_portfolio_presentation_cv',
     'to_do_list_app',
@@ -78,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
     'django_prometheus.middleware.PrometheusAfterMiddleware',  # Always setup it at the end.
 ]
 

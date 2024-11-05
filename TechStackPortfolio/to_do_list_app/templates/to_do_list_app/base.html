@@ -4,22 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Todo List App{% endblock %}</title>
-    <!-- Load DaisyUI or any other specific CSS needed for this app -->
-    <link href="{% static 'to_do_list_app/css/tailwind_daisyui_output.css' %}" rel="stylesheet">
+    <link href="{% static 'to_do_list_app/css/tailwind_daisyui_input_min.css' %}" rel="stylesheet">
+    <link href="{% static 'to_do_list_app/css/theme-changer-daisy-ui.css' %}" rel="stylesheet">
 </head>
-<body>
-<!-- Add a button to go back to the main project -->
-<div class="daisyui-container daisyui-mt-4 btn">
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>  {# https://django-htmx.readthedocs.io/en/latest/tips.html #}
+<div class="daisyui-mt-4 btn">
     <a href="{% url 'main_portfolio_presentation_cv_home' %}" class="daisy-btn daisy-btn-primary">
         Back to Main Portfolio
     </a>
 </div>
-
-<!-- Main content block for the to-do list app -->
-<div class="daisyui-container mt-4">
-    {% block content %}{% endblock %}
+<div class="daisyui-mt-4 btn">
+    <label>
+        <select data-choose-theme>
+            <option value="dark">dark</option>
+            <option value="light">light</option>
+            <option value="cupcake">cupcake</option>
+        </select>
+    </label>
 </div>
-
-<!-- Add any scripts specific to the todo list app here -->
+<div class="mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+<script src="{% static 'htmx/htmx.min.js' %}"></script>
+<script src="{% static 'to_do_list_app/js/theme-changer-daisy-ui.js' %}"></script>
 </body>
 </html>

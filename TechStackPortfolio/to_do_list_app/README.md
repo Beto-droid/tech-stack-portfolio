@@ -11,7 +11,7 @@
 
 2. Install any npm pack that you want, in this example, tailwindcss and daisyui:
    ```bash
-   npm install tailwindcss daisyui @tailwindcss/typography @tailwindcss/forms
+   npm install tailwindcss daisyui @tailwindcss/typography
    ```
    
    Note: the @ are plugins for tailwindcss
@@ -35,7 +35,6 @@ module.exports = {
   plugins: [  // add the plugins, as daisyui and the other for tailwind
     require('daisyui'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
   ],
   daisyui: {
     // themes: ['light', 'dark'],  // selec themes
@@ -66,6 +65,11 @@ npx tailwindcss -i ./static/to_do_list_app/css/tailwind_input.css -o ./static/to
 
 ```
 
+8. Then when loading to production, 
+
+```bash
+    npx tailwindcss -o tailwind_input_min.css --minify
+```
 
 
 
