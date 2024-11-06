@@ -1,5 +1,5 @@
 services:
-  web:
+  portfolio_web:
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,8 +11,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
-      - redis
+      - portfolio_db
+      - portfolio_redis
     environment:
       DATABASE_NAME: techstackdb
       DATABASE_USER: techstackuser
@@ -22,7 +22,8 @@ services:
       ALLOWED_HOSTS: 0.0.0.0,localhost
       REDIS_HOST: redis
       REDIS_PORT: 6379
-  db:
+
+  portfolio_db:
     image: postgres:17.0
     container_name: tech_stack_portfolio_db
     ports:
@@ -34,26 +35,37 @@ services:
       POSTGRES_USER: techstackuser
       POSTGRES_PASSWORD: techstackpassword
 
-  redis:
+  portfolio_redis:
     image: redis:7.4.1
     container_name: tech_stack_portfolio_redis
     ports:
       - "6390:6379"
 
-  prometheus:
+  portfolio_prometheus:
     image: prom/prometheus
-    container_name: prometheus
+    container_name: tech_stack_portfolio_prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
 
-  grafana:
+  portfolio_grafana:
     image: grafana/grafana
-    container_name: grafana
+    container_name: tech_stack_portfolio_grafana
     ports:
       - "3000:3000"
+
+#  celery:
+#    build:
+#      context: .
+#      dockerfile: dockerfiles_services/celery/Dockerfile
+#    image: my_django_portfolio_celery
+#    container_name: tech_stack_portfolio_celery
+#    depends_on:
+#      - redis
+#    environment:
+#      REDIS_PORT: 6379
 
 volumes:
   postgres_data:

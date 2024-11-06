@@ -7,7 +7,7 @@ Below, you’ll find information on how to set up, run, and interact with the pr
 
 ## Applications Included
 This portfolio demonstrates various applications, including (details to be filled in as apps are added):
-- **App 1:** Description placeholder.
+- **Mini Task Manager:** Fast, DaysiUI+TailwindCSS HTMX enabled Django form (only 30kb NETWORK).
 - **App 2:** Description placeholder.
 - **App 3:** Description placeholder.
 

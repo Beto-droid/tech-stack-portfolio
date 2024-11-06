@@ -36,8 +36,8 @@ restore_database() {
     done
 
     # Drop and recreate the db
-    docker exec -i $CONTAINER_NAME psql -U $USER -c "DROP DATABASE $DATABASE;"
-    docker exec -i $CONTAINER_NAME psql -U $USER -c "CREATE DATABASE $DATABASE;"
+#    docker exec -i $CONTAINER_NAME psql -U $USER -c "DROP DATABASE $DATABASE;"
+#    docker exec -i $CONTAINER_NAME psql -U $USER -c "CREATE DATABASE $DATABASE;"
 
     # Restore.
     docker exec -i $CONTAINER_NAME psql -U $USER -d $DATABASE < "$backup_file"
