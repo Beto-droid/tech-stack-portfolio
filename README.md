@@ -1,4 +1,4 @@
-
+# NOTE: this is a on going project, now im doing some challenges so i dont have much time but ill complete it later :).
 # Tech Stack Portfolio
 
 This is a portfolio showcasing my full-stack development work, featuring a variety of technologies and applications.
@@ -8,8 +8,7 @@ Below, you’ll find information on how to set up, run, and interact with the pr
 ## Applications Included
 This portfolio demonstrates various applications, including (details to be filled in as apps are added):
 - **Mini Task Manager:** Fast, DaysiUI+TailwindCSS HTMX enabled Django form (only 30kb NETWORK).
-- **App 2:** Description placeholder.
-- **App 3:** Description placeholder.
+- **App 2:** In process :).
 
 ## Getting Started
 
