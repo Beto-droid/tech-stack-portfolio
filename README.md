@@ -6,7 +6,7 @@ The project is structured using Django and leverages Docker for containerization
 Below, you’ll find information on how to set up, run, and interact with the project.
 
 ## Applications Included
-This portfolio demonstrates various applications, including (details to be filled in as apps are added):
+This portfolio demonstrates various applications, including:
 - **Mini Task Manager:** Fast, DaysiUI+TailwindCSS HTMX enabled Django form (only 30kb NETWORK).
 - **App 2:** In process :).
 
